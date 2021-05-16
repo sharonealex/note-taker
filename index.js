@@ -11,10 +11,10 @@ app.use(express.static('public'));
 //routes
 
 //apiRoutes
-require('')(app);
+require('./routes/apiRoutes')(app);
 
 //htmlRoutes
-require('')(app);
+require('./routes/htmlRoutes')(app);
 
 app.listen(PORT, ()=>{
     console.log(`server up and running on port ${PORT}`);
