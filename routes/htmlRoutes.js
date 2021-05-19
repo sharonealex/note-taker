@@ -2,10 +2,10 @@
 module.exports = function(app){
 
     app.get('/notes', (req, res)=>{
- //route to notes.html
+        res.sendFile(path.join(__dirname, "../public/notes.html"));
     })
 
     app.get('*', (req, res)=>{
-//route to index.html
+         res.sendFile(path.join(__dirname, "../public/index.html"));
     })
 }

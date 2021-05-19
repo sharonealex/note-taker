@@ -16,10 +16,11 @@ module.exports = (app)=>{
         newNote['id'] = uuid();
         let noteData = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
         noteData.push(newNote);
-        res.json(noteData);
-        //get note from Request body.
-        //write to file after assigninng uniq id
-
+        fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
+                if (err) throw err;
+                return true;
+            });
+        res.json(newNote);
     })
 
 
