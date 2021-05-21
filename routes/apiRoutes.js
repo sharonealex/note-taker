@@ -22,6 +22,16 @@ module.exports = (app)=>{
         res.json(newNote);
     })
 
-   
+    app.delete("/api/notes/:id", (req, res)=>{
+        let noteId = req.params.id;
+        let noteData = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+        const newData = noteData.filter( note => note.id !== noteId );
+        fs.writeFile("db/db.json",JSON.stringify(newData,'\t'),err => {
+            if (err) throw err;
+            return true;
+        });
+        res.json(newData);
+        
+    })
 
 }
